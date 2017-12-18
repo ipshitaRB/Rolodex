@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 
 import com.ipshita.rolodex.R;
 import com.ipshita.rolodex.models.Contact;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -31,7 +32,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<ContactViewHolder> {
     public ContactViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         context = parent.getContext();
         View view = LayoutInflater.from(context).inflate(R.layout.card_layout,
-                parent,false);
+                parent, false);
 
         return new ContactViewHolder(view);
     }
@@ -39,17 +40,25 @@ public class RecyclerAdapter extends RecyclerView.Adapter<ContactViewHolder> {
     @Override
     public void onBindViewHolder(ContactViewHolder holder, int position) {
         currentContact = contactList.get(position);
-        holder.nameTextView.setText(currentContact.getFirstName() + " " + currentContact.getLastName());
+        holder.nameTextView.setText(ContactUtil.getFullName(currentContact.getFirstName(),
+                currentContact.getLastName()));
         holder.startDateTextView.setText(currentContact.getStartDate());
-        holder.emailTextView.setText(currentContact.getEmail());
+        holder.emailTextView.setText(ContactUtil.truncateString(currentContact.getEmail(),
+                32));
         holder.companyTextView.setText(currentContact.getCompany());
         holder.descriptionTextView.setText(currentContact.getBio());
+        if (null != currentContact.getAvatarLink() && !currentContact.getAvatarLink().isEmpty())
+            Picasso.with(context)
+                    .load(currentContact.getAvatarLink())
+                    .placeholder(R.mipmap.ic_launcher)
+                    .error(R.mipmap.ic_launcher).
+                    into(holder.avatarImageView);
 
-        // TODO: 18-12-2017 trim email 
-        // TODO: 18-12-2017 load avatar thumbnail using picasso
-        // TODO: 18-12-2017 format bio - show bold and italics 
-        // TODO: 18-12-2017 format start date 
-        // TODO: 18-12-2017 in firstname and lastname 
+        // TODO: 18-12-2017 trim email when in portait mode
+        // done: 18-12-2017 load avatar thumbnail using picasso - 1
+        // TODO: 18-12-2017 format bio - show bold and italics - 2
+        // TODO: 18-12-2017 format start date - 5
+        // done: 18-12-2017 in firstname and lastname
     }
 
 

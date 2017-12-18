@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         contactRecyclerView.setLayoutManager(layoutManager);
 
         // done: 18-12-2017 change background color
-        // TODO: 18-12-2017 check network connection before fetching response
+        // TODO: 18-12-2017 check network connection before fetching response - 3
         loadContacts();
     }
 
@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
                 SnapHelper snapHelper = new LinearSnapHelper();
                 snapHelper.attachToRecyclerView(contactRecyclerView);
 
-                // TODO: 18-12-2017 save contactlist during orientation change 
+                // TODO: 18-12-2017 save contactlist during orientation change - 4
 
             }
 
