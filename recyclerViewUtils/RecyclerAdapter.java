@@ -38,7 +38,18 @@ public class RecyclerAdapter extends RecyclerView.Adapter<ContactViewHolder> {
 
     @Override
     public void onBindViewHolder(ContactViewHolder holder, int position) {
+        currentContact = contactList.get(position);
+        holder.nameTextView.setText(currentContact.getFirstName() + " " + currentContact.getLastName());
+        holder.startDateTextView.setText(currentContact.getStartDate());
+        holder.emailTextView.setText(currentContact.getEmail());
+        holder.companyTextView.setText(currentContact.getCompany());
+        holder.descriptionTextView.setText(currentContact.getBio());
 
+        // TODO: 18-12-2017 trim email 
+        // TODO: 18-12-2017 load avatar thumbnail using picasso
+        // TODO: 18-12-2017 format bio - show bold and italics 
+        // TODO: 18-12-2017 format start date 
+        // TODO: 18-12-2017 in firstname and lastname 
     }
 
 
