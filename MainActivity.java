@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // Done: 18-12-2017 retrofit
-        // TODO: 18-12-2017 make cardview move horizontally
+        // done: 18-12-2017 make cardview move horizontally
 
 
         contactRecyclerView = (RecyclerView) findViewById(R.id.contact_recycler_view);
@@ -49,9 +49,12 @@ public class MainActivity extends AppCompatActivity {
 
         contactList = new ArrayList<>();
 
-        layoutManager = new LinearLayoutManager(this);
+        layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,
+                false);
         contactRecyclerView.setLayoutManager(layoutManager);
 
+        // done: 18-12-2017 change background color
+        // TODO: 18-12-2017 check network connection before fetching response
         loadContacts();
     }
 
@@ -69,11 +72,13 @@ public class MainActivity extends AppCompatActivity {
 
                 contactList = (ArrayList<Contact>) response.body();
 
-                // TODO: 18-12-2017 update recyclerview
+                // Done: 18-12-2017 update recyclerview
                 adapter = new RecyclerAdapter(contactList);
                 contactRecyclerView.setAdapter(adapter);
                 SnapHelper snapHelper = new LinearSnapHelper();
                 snapHelper.attachToRecyclerView(contactRecyclerView);
+
+                // TODO: 18-12-2017 save contactlist during orientation change 
 
             }
 
