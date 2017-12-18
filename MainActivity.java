@@ -2,7 +2,6 @@ package com.ipshita.rolodex;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.TextView;
 
 import com.ipshita.rolodex.models.Contact;
 import com.ipshita.rolodex.retrofitUtils.ContactApiClient;
@@ -17,7 +16,7 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
-    private TextView nameTextView;
+
 
     private ContactApiInterface contactApiInterface;
 
@@ -28,11 +27,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // TODO: 18-12-2017 retrofit
+        // Done: 18-12-2017 retrofit
         // TODO: 18-12-2017 cardview horizontal
 
-        // to check whether response is received
-        nameTextView = (TextView) findViewById(R.id.name_textView);
+
 
         contactApiInterface = ContactApiClient.getContactApiClient().
                 create(ContactApiInterface.class);
@@ -55,8 +53,8 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(Call<List<Contact>> call, Response<List<Contact>> response) {
 
                 contactList = (ArrayList<Contact>) response.body();
-                //Log.i(MainActivity.class.getSimpleName(), response.body().get(0).getFirstName());
-                nameTextView.setText(contactList.get(0).getFirstName());
+
+                // TODO: 18-12-2017 update recyclerview
             }
 
             @Override
