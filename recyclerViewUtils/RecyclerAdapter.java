@@ -56,7 +56,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<ContactViewHolder> {
 
         // TODO: 18-12-2017 trim email when in portait mode - 6
         // done: 18-12-2017 load avatar thumbnail using picasso - 1
-        // TODO: 18-12-2017 format bio - show bold and italics - 2
+        // Done: 18-12-2017 format bio - show bold and italics - 2
         // TODO: 18-12-2017 format start date - 5
         // done: 18-12-2017 in firstname and lastname
     }
