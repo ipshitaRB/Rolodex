@@ -2,6 +2,7 @@ package com.ipshita.rolodex.recyclerViewUtils;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,10 +44,9 @@ public class RecyclerAdapter extends RecyclerView.Adapter<ContactViewHolder> {
         holder.nameTextView.setText(ContactUtil.getFullName(currentContact.getFirstName(),
                 currentContact.getLastName()));
         holder.startDateTextView.setText(currentContact.getStartDate());
-        holder.emailTextView.setText(ContactUtil.truncateString(currentContact.getEmail(),
-                32));
+        holder.emailTextView.setText(currentContact.getEmail());
         holder.companyTextView.setText(currentContact.getCompany());
-        holder.descriptionTextView.setText(currentContact.getBio());
+        holder.descriptionTextView.setText(Html.fromHtml(ContactUtil.getFormattedText(currentContact.getBio())));
         if (null != currentContact.getAvatarLink() && !currentContact.getAvatarLink().isEmpty())
             Picasso.with(context)
                     .load(currentContact.getAvatarLink())
@@ -54,7 +54,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<ContactViewHolder> {
                     .error(R.mipmap.ic_launcher).
                     into(holder.avatarImageView);
 
-        // TODO: 18-12-2017 trim email when in portait mode
+        // TODO: 18-12-2017 trim email when in portait mode - 6
         // done: 18-12-2017 load avatar thumbnail using picasso - 1
         // TODO: 18-12-2017 format bio - show bold and italics - 2
         // TODO: 18-12-2017 format start date - 5
